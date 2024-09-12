@@ -7,12 +7,27 @@ namespace GestionEquiposFutbol
 {
     internal class Program
     {
-        static Dictionary<string, int> equiposFutbol = new Dictionary<string, int>();
-        static Dictionary<string, string> jugdores = new Dictionary<string, string>();
+        static string ruta = @"C:\Users\Mati\Desktop\proyectos\GestionEquiposFutbol\ficheros\";
+        static string ficheroEquipos = "equipos.txt";
+        static string ficheroJugadores = "jugadores.txt";
+        static Dictionary<string, int> equiposFutbol = new Dictionary<string, int>()
+        {
+            { "FC Barcelona", 24 },
+            { "Betis", 12 }
+        };
+        static Dictionary<string, string> jugdores = new Dictionary<string, string>()
+        {
+            { "Lionel Messi", "FC Barcelona" },
+            { "Juan Pepe" , "Betis" }
+        };
+
 
         static void Main(string[] args)
         {
-            LeerDatos();
+            GuardarDatos();
+            GuardarJugadores();
+            //LeerDatosEquipos();
+            //LeerDatosJugadores();
 
             while (true)
             {
@@ -63,7 +78,7 @@ namespace GestionEquiposFutbol
                         MostrarJugadores();
                         break;
                     case 0:
-                        GuardarDatos("equipos.txt");
+                        GuardarDatos();
                         return;
                     default:
                         Console.WriteLine("Opción inválida. Intenta nuevamente.");
@@ -84,12 +99,33 @@ namespace GestionEquiposFutbol
 
         private static void DarBajaJugador()
         {
-            //TODO
+            Console.Write("Ingrese el nombre del jugador a dar de baja: ");
+            string jugador = Console.ReadLine();
+
+            if (jugdores.Remove(jugador))
+                Console.WriteLine($"El jugador {jugador} ha sido eliminado.");
+            else
+                Console.WriteLine("El equipo no existe.");
+
+            GuardarDatos();
         }
 
         private static void DarAltaJug()
         {
-            //TODO
+            Console.Write("Ingrese el nombre del jugador: ");
+            string jugador = Console.ReadLine();
+
+            if (jugdores.ContainsKey(jugador))
+                Console.WriteLine("El jugador ya existe.");
+            else
+            {
+                Console.Write("Ingrese el nombre del equipo: ");
+                string equipo = Console.ReadLine();
+                jugdores.Add(jugador, equipo);
+                Console.WriteLine($"El jugador {jugador} ha sido dado de alta en el equipo {equipo}.");
+            }
+
+            GuardarDatos();
         }
 
         /// <summary>
@@ -117,7 +153,7 @@ namespace GestionEquiposFutbol
                     Console.WriteLine("Puntuación inválida."); 
             }
 
-            GuardarDatos("equipos.txt");
+            GuardarDatos();
         }
 
         /// <summary>
@@ -136,7 +172,7 @@ namespace GestionEquiposFutbol
             else
                 Console.WriteLine("El equipo no existe.");
 
-            GuardarDatos("equipos.txt");
+            GuardarDatos();
         }
 
         /// <summary>
@@ -164,7 +200,7 @@ namespace GestionEquiposFutbol
             else
                 Console.WriteLine("El equipo no existe.");
 
-            GuardarDatos("equipos.txt");
+            GuardarDatos();
         }
 
         /// <summary>
@@ -177,9 +213,9 @@ namespace GestionEquiposFutbol
                 Console.WriteLine($"{equipo.Key}: {equipo.Value} puntos");   
         }
 
-        public static void LeerDatos()
+        public static void LeerDatosEquipos()
         {
-            using (StreamReader reader = new StreamReader("equipos.txt"))
+            using (StreamReader reader = new StreamReader(ruta + ficheroEquipos))
             {
                 string linea;
                 while ((linea = reader.ReadLine()) != null)
@@ -195,17 +231,44 @@ namespace GestionEquiposFutbol
             }
         }
 
+        public static void LeerDatosJugadores()
+        {
+            using (StreamReader reader = new StreamReader(ruta + ficheroEquipos))
+            {
+                string linea;
+                while ((linea = reader.ReadLine()) != null)
+                {
+                    string[] datos = linea.Split(';');
+                    if (datos.Length == 2)
+                    {
+                        string jugador = datos[0];
+                        string equipo = datos[1];
+                        jugdores.Add(jugador, equipo);
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Guardamos los datos en un archivo de texto
         /// </summary>
-        /// <param name="path"></param>
-        public static void GuardarDatos(string path)
+        public static void GuardarDatos()
         {
-            using (StreamWriter writer = new StreamWriter(path))
+            using (StreamWriter writer = new StreamWriter(ruta + ficheroEquipos))
             {
                 foreach (KeyValuePair<string, int> equipo in equiposFutbol)
                     writer.WriteLine($"{equipo.Key};{equipo.Value}");
             }
         }
+
+        static void GuardarJugadores()
+        {
+            using (StreamWriter writer = new StreamWriter(ruta + ficheroJugadores))
+            {
+                foreach (KeyValuePair<string, string> jugador in jugdores)
+                    writer.WriteLine($"{jugador.Key};{jugador.Value}");
+            }
+        }
+
     }
 }
