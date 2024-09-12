@@ -8,6 +8,7 @@ namespace GestionEquiposFutbol
     internal class Program
     {
         static Dictionary<string, int> equiposFutbol = new Dictionary<string, int>();
+        static Dictionary<string, string> jugdores = new Dictionary<string, string>();
 
         static void Main(string[] args)
         {
@@ -20,7 +21,13 @@ namespace GestionEquiposFutbol
                                       2. Dar de baja un equipo
                                       3. Modificar puntuación
                                       4. Mostrar clasificación
-                                      5. Salir y guardar cambios");
+
+                                      5. Dar de alta un jugador
+                                      6. Dar de baja un jugador
+                                      7. Modificar equipo de jugador
+                                      8. Mostrar jugadores
+
+                                      0. Salir y guardar cambios");
 
                 Console.Write("Seleccione una opción: ");
                 if (!int.TryParse(Console.ReadLine(), out int opcion))
@@ -44,6 +51,18 @@ namespace GestionEquiposFutbol
                         MostrarClasificacion();
                         break;
                     case 5:
+                        DarAltaJug();
+                        break;
+                    case 6:
+                        DarBajaJugador();
+                        break;
+                    case 7:
+                        ModificarEquipoJug();
+                        break;
+                    case 8:
+                        MostrarJugadores();
+                        break;
+                    case 0:
                         GuardarDatos("equipos.txt");
                         return;
                     default:
@@ -51,6 +70,26 @@ namespace GestionEquiposFutbol
                         break;
                 }
             }
+        }
+
+        private static void MostrarJugadores()
+        {
+            //TODO
+        }
+
+        private static void ModificarEquipoJug()
+        {
+            //TODO
+        }
+
+        private static void DarBajaJugador()
+        {
+            //TODO
+        }
+
+        private static void DarAltaJug()
+        {
+            //TODO
         }
 
         /// <summary>
