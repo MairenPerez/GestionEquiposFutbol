@@ -11,7 +11,7 @@ namespace GestionEquiposFutbol
 
         static void Main(string[] args)
         {
-            AlmacenarDatos();
+            LeerDatos();
 
             while (true)
             {
@@ -65,9 +65,7 @@ namespace GestionEquiposFutbol
             string equipo = Console.ReadLine();
 
             if (equiposFutbol.ContainsKey(equipo))
-            {
                 Console.WriteLine("El equipo ya existe.");
-            }
             else
             {
                 Console.Write("Ingrese la puntuación inicial: ");
@@ -77,9 +75,7 @@ namespace GestionEquiposFutbol
                     Console.WriteLine($"El equipo {equipo} ha sido dado de alta con {puntuacion} puntos.");
                 }
                 else
-                {
-                    Console.WriteLine("Puntuación inválida.");
-                }
+                    Console.WriteLine("Puntuación inválida."); 
             }
 
             GuardarDatos("equipos.txt");
@@ -97,13 +93,9 @@ namespace GestionEquiposFutbol
             string equipo = Console.ReadLine();
 
             if (equiposFutbol.Remove(equipo))
-            {
                 Console.WriteLine($"El equipo {equipo} ha sido eliminado.");
-            }
             else
-            {
                 Console.WriteLine("El equipo no existe.");
-            }
 
             GuardarDatos("equipos.txt");
         }
@@ -121,20 +113,17 @@ namespace GestionEquiposFutbol
             if (equiposFutbol.TryGetValue(equipo, out int puntuacionActual))
             {
                 Console.Write("Ingrese la nueva puntuación: ");
+
                 if (int.TryParse(Console.ReadLine(), out int nuevaPuntuacion))
                 {
                     equiposFutbol[equipo] = nuevaPuntuacion;
                     Console.WriteLine($"La puntuación de {equipo} se ha actualizado a {nuevaPuntuacion}.");
                 }
                 else
-                {
                     Console.WriteLine("Puntuación inválida.");
-                }
             }
             else
-            {
                 Console.WriteLine("El equipo no existe.");
-            }
 
             GuardarDatos("equipos.txt");
         }
@@ -146,12 +135,10 @@ namespace GestionEquiposFutbol
         {
             Console.WriteLine("Clasificación:");
             foreach (KeyValuePair<string, int> equipo in equiposFutbol.OrderByDescending(e => e.Value))
-            {
-                Console.WriteLine($"{equipo.Key}: {equipo.Value} puntos");
-            }
+                Console.WriteLine($"{equipo.Key}: {equipo.Value} puntos");   
         }
 
-        public static void AlmacenarDatos()
+        public static void LeerDatos()
         {
             using (StreamReader reader = new StreamReader("equipos.txt"))
             {
@@ -163,9 +150,7 @@ namespace GestionEquiposFutbol
                     {
                         string equipo = datos[0];
                         if (int.TryParse(datos[1], out int puntuacion))
-                        {
-                            equiposFutbol.Add(equipo, puntuacion);
-                        }
+                            equiposFutbol.Add(equipo, puntuacion);                   
                     }
                 }
             }
@@ -177,19 +162,10 @@ namespace GestionEquiposFutbol
         /// <param name="path"></param>
         public static void GuardarDatos(string path)
         {
-            List<string> lineas = new List<string>();
-
-            foreach (KeyValuePair<string, int> equipo in equiposFutbol)
-            {
-                lineas.Add($"{equipo.Key};{equipo.Value}");
-            }
-
             using (StreamWriter writer = new StreamWriter(path))
             {
-                foreach (string linea in lineas)
-                {
-                    writer.WriteLine(linea);
-                }
+                foreach (KeyValuePair<string, int> equipo in equiposFutbol)
+                    writer.WriteLine($"{equipo.Key};{equipo.Value}");
             }
         }
     }
