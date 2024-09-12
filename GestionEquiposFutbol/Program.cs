@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GestionEquiposFutbol
 {
@@ -91,7 +89,7 @@ namespace GestionEquiposFutbol
         /// Damos de baja un equipo de la clasificación.
         /// 
         /// Comprobamos si existe con la clave / valor
-        /// Si existe, se elimi con el método Remove
+        /// Si existe, se elimina con el método Remove
         /// </summary>
         static void DarDeBaja()
         {
@@ -110,12 +108,10 @@ namespace GestionEquiposFutbol
             GuardarDatos("equipos.txt");
         }
 
-
         /// <summary>
         /// Modificamos la puntuación de un equipo
         /// 
         /// Comprobamos si existe con la clave / valor
-        /// Guardamos los datos.
         /// </summary>
         static void ModificarPuntuacion()
         {
@@ -142,7 +138,6 @@ namespace GestionEquiposFutbol
 
             GuardarDatos("equipos.txt");
         }
-
 
         /// <summary>
         /// Mostramos la clasificación de los equipos
@@ -175,7 +170,6 @@ namespace GestionEquiposFutbol
                 }
             }
         }
-
 
         /// <summary>
         /// Guardamos los datos en un archivo de texto
