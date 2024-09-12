@@ -158,13 +158,22 @@ namespace GestionEquiposFutbol
 
         public static void AlmacenarDatos()
         {
-            equiposFutbol["Real Madrid"] = 92;
-            equiposFutbol["Barcelona"] = 88;
-            equiposFutbol["Atlético de Madrid"] = 85;
-            equiposFutbol["Sevilla"] = 78;
-            equiposFutbol["Villarreal"] = 75;
-            equiposFutbol["Real Sociedad"] = 66;
-            equiposFutbol["Granada"] = 55;
+            using (StreamReader reader = new StreamReader("equipos.txt"))
+            {
+                string linea;
+                while ((linea = reader.ReadLine()) != null)
+                {
+                    string[] datos = linea.Split(';');
+                    if (datos.Length == 2)
+                    {
+                        string equipo = datos[0];
+                        if (int.TryParse(datos[1], out int puntuacion))
+                        {
+                            equiposFutbol.Add(equipo, puntuacion);
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -181,7 +190,13 @@ namespace GestionEquiposFutbol
                 lineas.Add($"{equipo.Key};{equipo.Value}");
             }
 
-            File.WriteAllLines(path, lineas);
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                foreach (string linea in lineas)
+                {
+                    writer.WriteLine(linea);
+                }
+            }
         }
     }
 }
