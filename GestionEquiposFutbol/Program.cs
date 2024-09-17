@@ -105,8 +105,8 @@ Gestión de equipos de fútbol
         private static void MostrarJugadores()
         {
             Console.WriteLine("Lista de jugadores:");
-            foreach (KeyValuePair<string, string> jugador in jugdores.OrderByDescending(j => j.Value))
 
+            foreach (KeyValuePair<string, string> jugador in jugdores.OrderByDescending(j => j.Value))
                 Console.WriteLine($"{jugador.Key}: {jugador.Value}");
         }
 
@@ -132,9 +132,8 @@ Gestión de equipos de fútbol
                 Console.WriteLine($"El jugador {jugador} ha sido transferido al equipo {nuevoEquipo}.");
             }
             else
-            {
                 Console.WriteLine("Este jugador no existe.");
-            }
+
             Console.WriteLine();
         }
 
@@ -267,6 +266,7 @@ Gestión de equipos de fútbol
         static void MostrarClasificacion()
         {
             Console.WriteLine("Clasificación:");
+
             foreach (KeyValuePair<string, int> equipo in equiposFutbol.OrderByDescending(e => e.Value))
                 Console.WriteLine($"{equipo.Key}: {equipo.Value} puntos");
         }
@@ -279,12 +279,15 @@ Gestión de equipos de fútbol
             using (StreamReader reader = new StreamReader(Path.Combine(Ruta, FicheroEquipos)))
             {
                 string linea;
+
                 while ((linea = reader.ReadLine()) != null)
                 {
                     string[] datos = linea.Split(';');
+
                     if (datos.Length == 2)
                     {
                         string equipo = datos[0];
+
                         if (int.TryParse(datos[1], out int puntuacion))
                             Console.WriteLine("Equipo: " + equipo + " Puntuación: " + puntuacion);
                     }
@@ -301,9 +304,11 @@ Gestión de equipos de fútbol
             using (StreamReader reader = new StreamReader(Path.Combine(Ruta, FicheroJugadores)))
             {
                 string linea;
+
                 while ((linea = reader.ReadLine()) != null)
                 {
                     string[] datos = linea.Split(';');
+
                     if (datos.Length == 2)
                     {
                         string jugador = datos[0];
