@@ -51,6 +51,7 @@ Gestión de equipos de fútbol
 
                 Console.Write("Seleccione una opción: ");
                 Console.WriteLine();
+
                 if (!int.TryParse(Console.ReadLine(), out int opcion))
                 {
                     Console.WriteLine("Opción inválida. Ingresa un número del 1 al 5.");
