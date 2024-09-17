@@ -134,7 +134,7 @@ namespace GestionEquiposFutbol
             else
                 Console.WriteLine("El equipo no existe.");
 
-            GuardarDatos();
+            GuardarJugadores();
         }
 
         private static void DarAltaJug()
@@ -152,7 +152,7 @@ namespace GestionEquiposFutbol
                 Console.WriteLine($"El jugador {jugador} ha sido dado de alta en el equipo {equipo}.");
             }
 
-            GuardarDatos();
+            GuardarJugadores();
         }
 
         /// <summary>
