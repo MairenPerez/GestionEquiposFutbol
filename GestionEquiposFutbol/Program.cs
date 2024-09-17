@@ -321,6 +321,13 @@ Gestión de equipos de fútbol
         /// </summary>
         public static void GuardarDatos()
         {
+            // Comprobar si la carpeta 'ficheros' existe; si no, la creamos
+            if (!Directory.Exists(ruta))
+            {
+                Directory.CreateDirectory(ruta);
+            }
+
+            // Guardar los datos en el fichero de equipos
             using (StreamWriter writer = new StreamWriter(Path.Combine(ruta, ficheroEquipos)))
             {
                 foreach (KeyValuePair<string, int> equipo in equiposFutbol)
@@ -328,17 +335,29 @@ Gestión de equipos de fútbol
             }
         }
 
+
+        /// <summary>
+        /// Guardamos los datos de los jugadores en un archivo de texto
+        /// </summary>
         /// <summary>
         /// Guardamos los datos de los jugadores en un archivo de texto
         /// </summary>
         static void GuardarJugadores()
         {
+            // Comprobar si la carpeta 'ficheros' existe; si no, la creamos
+            if (!Directory.Exists(ruta))
+            {
+                Directory.CreateDirectory(ruta);
+            }
+
+            // Guardar los datos en el fichero de jugadores
             using (StreamWriter writer = new StreamWriter(Path.Combine(ruta, ficheroJugadores)))
             {
                 foreach (KeyValuePair<string, string> jugador in jugdores)
                     writer.WriteLine($"{jugador.Key};{jugador.Value}");
             }
         }
+
 
     }
 }
