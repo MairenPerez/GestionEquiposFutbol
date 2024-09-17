@@ -7,8 +7,7 @@ namespace GestionEquiposFutbol
 {
     internal class Program
     {
-        //inicialización e instanciación de variables
-        static string ruta = @"C:\Users\Mairen\Desktop\CodingBootcamp";
+        static string ruta = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "ficheros");
         static string ficheroEquipos = "equipos.txt";
         static string ficheroJugadores = "jugadores.txt";
         static Dictionary<string, int> equiposFutbol = new Dictionary<string, int>()
@@ -278,7 +277,7 @@ Gestión de equipos de fútbol
         /// </summary>
         public static void LeerDatosEquipos()
         {
-            using (StreamReader reader = new StreamReader(ruta + ficheroEquipos))
+            using (StreamReader reader = new StreamReader(Path.Combine(ruta, ficheroEquipos)))
             {
                 string linea;
                 while ((linea = reader.ReadLine()) != null)
@@ -300,7 +299,7 @@ Gestión de equipos de fútbol
         /// </summary>
         public static void LeerDatosJugadores()
         {
-            using (StreamReader reader = new StreamReader(ruta + ficheroJugadores))
+            using (StreamReader reader = new StreamReader(Path.Combine(ruta, ficheroJugadores)))
             {
                 string linea;
                 while ((linea = reader.ReadLine()) != null)
@@ -322,7 +321,7 @@ Gestión de equipos de fútbol
         /// </summary>
         public static void GuardarDatos()
         {
-            using (StreamWriter writer = new StreamWriter(ruta + ficheroEquipos))
+            using (StreamWriter writer = new StreamWriter(Path.Combine(ruta, ficheroEquipos)))
             {
                 foreach (KeyValuePair<string, int> equipo in equiposFutbol)
                     writer.WriteLine($"{equipo.Key};{equipo.Value}");
@@ -334,7 +333,7 @@ Gestión de equipos de fútbol
         /// </summary>
         static void GuardarJugadores()
         {
-            using (StreamWriter writer = new StreamWriter(ruta + ficheroJugadores))
+            using (StreamWriter writer = new StreamWriter(Path.Combine(ruta, ficheroJugadores)))
             {
                 foreach (KeyValuePair<string, string> jugador in jugdores)
                     writer.WriteLine($"{jugador.Key};{jugador.Value}");
