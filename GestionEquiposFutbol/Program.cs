@@ -42,11 +42,6 @@ Gestión de equipos de fútbol
 7. Modificar equipo de jugador
 8. Mostrar jugadores
 
-9. Añadir un partido
-10. Eliminar un partido
-11. Modificar un partido
-12. Mostrar partidos
-
 0. Salir y guardar cambios
 ");
 
