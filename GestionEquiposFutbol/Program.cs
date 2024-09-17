@@ -7,6 +7,7 @@ namespace GestionEquiposFutbol
 {
     internal class Program
     {
+        //inicialización e instanciación de variables
         static string ruta = @"C:\Users\Mati\Desktop\proyectos\GestionEquiposFutbol\ficheros";
         static string ficheroEquipos = "equipos.txt";
         static string ficheroJugadores = "jugadores.txt";
@@ -135,6 +136,12 @@ Gestión de equipos de fútbol
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Damos de baja un jugador.
+        /// 
+        /// Comprobamos si existe con la clave / valor
+        /// Si existe, se elimina con el método Remove
+        /// </summary>
         private static void DarBajaJugador()
         {
             Console.Write("Ingrese el nombre del jugador a dar de baja: ");
@@ -149,6 +156,12 @@ Gestión de equipos de fútbol
             GuardarJugadores();
         }
 
+        /// <summary>
+        /// Damos de alta un jugdor
+        /// 
+        /// Comprobamos si existe con la clave / valor
+        /// Si existe, añadimos nuevo jugador.
+        /// </summary>
         private static void DarAltaJug()
         {
             Console.Write("Ingrese el nombre del jugador: ");
@@ -256,6 +269,9 @@ Gestión de equipos de fútbol
                 Console.WriteLine($"{equipo.Key}: {equipo.Value} puntos");
         }
 
+        /// <summary>
+        /// Leer los datos de los equipos del fichero
+        /// </summary>
         public static void LeerDatosEquipos()
         {
             using (StreamReader reader = new StreamReader(ruta + ficheroEquipos))
@@ -275,6 +291,9 @@ Gestión de equipos de fútbol
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Leer los datos de los jugadores de los ficheros
+        /// </summary>
         public static void LeerDatosJugadores()
         {
             using (StreamReader reader = new StreamReader(ruta + ficheroJugadores))
@@ -295,7 +314,7 @@ Gestión de equipos de fútbol
         }
 
         /// <summary>
-        /// Guardamos los datos en un archivo de texto
+        /// Guardamos los datos de los equipos en un archivo de texto
         /// </summary>
         public static void GuardarDatos()
         {
@@ -306,6 +325,9 @@ Gestión de equipos de fútbol
             }
         }
 
+        /// <summary>
+        /// Guardamos los datos de los jugadores en un archivo de texto
+        /// </summary>
         static void GuardarJugadores()
         {
             using (StreamWriter writer = new StreamWriter(ruta + ficheroJugadores))
