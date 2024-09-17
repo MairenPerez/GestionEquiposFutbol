@@ -8,7 +8,7 @@ namespace GestionEquiposFutbol
     internal class Program
     {
         //inicialización e instanciación de variables
-        static string ruta = @"C:\Users\Mati\Desktop\proyectos\GestionEquiposFutbol\ficheros";
+        static string ruta = @"C:\Users\Mairen\Desktop\CodingBootcamp";
         static string ficheroEquipos = "equipos.txt";
         static string ficheroJugadores = "jugadores.txt";
         static Dictionary<string, int> equiposFutbol = new Dictionary<string, int>()
