@@ -9,7 +9,7 @@ namespace GestionEquiposFutbol
     {
         //inicicialización e instanciación de las variables
         //carpeta solución del proyecto para no tener que poner cada una nuestra ruta relativa
-        static string Ruta = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "ficheros");
+        static string Ruta = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "Ficheros");
         static string FicheroEquipos = "equipos.txt";
         static string FicheroJugadores = "jugadores.txt";
 
