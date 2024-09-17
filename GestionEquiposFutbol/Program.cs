@@ -270,7 +270,6 @@ namespace GestionEquiposFutbol
                     {
                         string jugador = datos[0];
                         string equipo = datos[1];
-                        jugdores.Add(jugador, equipo);
                     }
                 }
             }
