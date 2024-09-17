@@ -7,7 +7,7 @@ namespace GestionEquiposFutbol
 {
     internal class Program
     {
-        static string ruta = @"C:\Users\Mairen\Desktop\CodingBootcamp";
+        static string ruta = @"C:\Users\Mati\Desktop\proyectos\GestionEquiposFutbol\ficheros";
         static string ficheroEquipos = "equipos.txt";
         static string ficheroJugadores = "jugadores.txt";
         static Dictionary<string, int> equiposFutbol = new Dictionary<string, int>()
@@ -26,25 +26,28 @@ namespace GestionEquiposFutbol
         {
             GuardarDatos();
             GuardarJugadores();
-            //LeerDatosEquipos();
-            //LeerDatosJugadores();
+            LeerDatosEquipos();
+            LeerDatosJugadores();
 
             while (true)
             {
-                Console.WriteLine(@"Gestión de equipos de fútbol
-                                      1. Dar de alta un equipo
-                                      2. Dar de baja un equipo
-                                      3. Modificar puntuación
-                                      4. Mostrar clasificación
+                Console.WriteLine(@"
+Gestión de equipos de fútbol
+1. Dar de alta un equipo
+2. Dar de baja un equipo
+3. Modificar puntuación
+4. Mostrar clasificación
 
-                                      5. Dar de alta un jugador
-                                      6. Dar de baja un jugador
-                                      7. Modificar equipo de jugador
-                                      8. Mostrar jugadores
+5. Dar de alta un jugador
+6. Dar de baja un jugador
+7. Modificar equipo de jugador
+8. Mostrar jugadores
 
-                                      0. Salir y guardar cambios");
+0. Salir y guardar cambios
+");
 
                 Console.Write("Seleccione una opción: ");
+                Console.WriteLine();
                 if (!int.TryParse(Console.ReadLine(), out int opcion))
                 {
                     Console.WriteLine("Opción inválida. Ingresa un número del 1 al 5.");
@@ -55,24 +58,30 @@ namespace GestionEquiposFutbol
                 {
                     case 1:
                         DarDeAlta();
+                        LeerDatosEquipos();
                         break;
                     case 2:
                         DarDeBaja();
+                        LeerDatosEquipos();
                         break;
                     case 3:
                         ModificarPuntuacion();
+                        LeerDatosEquipos();
                         break;
                     case 4:
                         MostrarClasificacion();
                         break;
                     case 5:
                         DarAltaJug();
+                        LeerDatosJugadores();
                         break;
                     case 6:
                         DarBajaJugador();
+                        LeerDatosJugadores();
                         break;
                     case 7:
                         ModificarEquipoJug();
+                        LeerDatosJugadores();
                         break;
                     case 8:
                         MostrarJugadores();
@@ -107,6 +116,7 @@ namespace GestionEquiposFutbol
         private static void ModificarEquipoJug()
         {
             Console.WriteLine("Ingresa el nombre jugador: ");
+            Console.WriteLine();
             string jugador = Console.ReadLine();
 
             if (jugdores.TryGetValue(jugador, out string equipoActual))
@@ -122,6 +132,7 @@ namespace GestionEquiposFutbol
             {
                 Console.WriteLine("Este jugador no existe.");
             }
+            Console.WriteLine();
         }
 
         private static void DarBajaJugador()
@@ -134,6 +145,7 @@ namespace GestionEquiposFutbol
             else
                 Console.WriteLine("El equipo no existe.");
 
+            Console.WriteLine();
             GuardarJugadores();
         }
 
@@ -152,6 +164,7 @@ namespace GestionEquiposFutbol
                 Console.WriteLine($"El jugador {jugador} ha sido dado de alta en el equipo {equipo}.");
             }
 
+            Console.WriteLine();
             GuardarJugadores();
         }
 
@@ -180,6 +193,7 @@ namespace GestionEquiposFutbol
                     Console.WriteLine("Puntuación inválida.");
             }
 
+            Console.WriteLine();
             GuardarDatos();
         }
 
@@ -199,6 +213,7 @@ namespace GestionEquiposFutbol
             else
                 Console.WriteLine("El equipo no existe.");
 
+            Console.WriteLine();
             GuardarDatos();
         }
 
@@ -227,6 +242,7 @@ namespace GestionEquiposFutbol
             else
                 Console.WriteLine("El equipo no existe.");
 
+            Console.WriteLine();
             GuardarDatos();
         }
 
@@ -252,15 +268,16 @@ namespace GestionEquiposFutbol
                     {
                         string equipo = datos[0];
                         if (int.TryParse(datos[1], out int puntuacion))
-                            equiposFutbol.Add(equipo, puntuacion);
+                            Console.WriteLine("Equipo: " + equipo + " Puntuación: " + puntuacion);
                     }
                 }
             }
+            Console.WriteLine();
         }
 
         public static void LeerDatosJugadores()
         {
-            using (StreamReader reader = new StreamReader(ruta + ficheroEquipos))
+            using (StreamReader reader = new StreamReader(ruta + ficheroJugadores))
             {
                 string linea;
                 while ((linea = reader.ReadLine()) != null)
@@ -270,10 +287,11 @@ namespace GestionEquiposFutbol
                     {
                         string jugador = datos[0];
                         string equipo = datos[1];
-                        jugdores.Add(jugador, equipo);
+                        Console.WriteLine("Jugador: " + jugador + " Equipo: " + equipo);
                     }
                 }
             }
+            Console.WriteLine();
         }
 
         /// <summary>
