@@ -7,6 +7,8 @@ namespace GestionEquiposFutbol
 {
     internal class Program
     {
+        //inicicialización e instanciación de las variables
+        //carpeta solución del proyecto para no tener que poner cada una nuestra ruta relativa
         static string Ruta = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "ficheros");
         static string FicheroEquipos = "equipos.txt";
         static string FicheroJugadores = "jugadores.txt";
