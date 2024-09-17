@@ -7,14 +7,16 @@ namespace GestionEquiposFutbol
 {
     internal class Program
     {
-        static string ruta = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "ficheros");
-        static string ficheroEquipos = "equipos.txt";
-        static string ficheroJugadores = "jugadores.txt";
+        static string Ruta = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "ficheros");
+        static string FicheroEquipos = "equipos.txt";
+        static string FicheroJugadores = "jugadores.txt";
+
         static Dictionary<string, int> equiposFutbol = new Dictionary<string, int>()
         {
             { "FC Barcelona", 24 },
             { "Betis", 12 }
         };
+
         static Dictionary<string, string> jugdores = new Dictionary<string, string>()
         {
             { "Lionel Messi", "FC Barcelona" },
@@ -272,7 +274,7 @@ Gestión de equipos de fútbol
         /// </summary>
         public static void LeerDatosEquipos()
         {
-            using (StreamReader reader = new StreamReader(Path.Combine(ruta, ficheroEquipos)))
+            using (StreamReader reader = new StreamReader(Path.Combine(Ruta, FicheroEquipos)))
             {
                 string linea;
                 while ((linea = reader.ReadLine()) != null)
@@ -294,7 +296,7 @@ Gestión de equipos de fútbol
         /// </summary>
         public static void LeerDatosJugadores()
         {
-            using (StreamReader reader = new StreamReader(Path.Combine(ruta, ficheroJugadores)))
+            using (StreamReader reader = new StreamReader(Path.Combine(Ruta, FicheroJugadores)))
             {
                 string linea;
                 while ((linea = reader.ReadLine()) != null)
@@ -317,13 +319,11 @@ Gestión de equipos de fútbol
         public static void GuardarDatos()
         {
             // Comprobar si la carpeta 'ficheros' existe; si no, la creamos
-            if (!Directory.Exists(ruta))
-            {
-                Directory.CreateDirectory(ruta);
-            }
+            if (!Directory.Exists(Ruta))
+                Directory.CreateDirectory(Ruta);
 
             // Guardar los datos en el fichero de equipos
-            using (StreamWriter writer = new StreamWriter(Path.Combine(ruta, ficheroEquipos)))
+            using (StreamWriter writer = new StreamWriter(Path.Combine(Ruta, FicheroEquipos)))
             {
                 foreach (KeyValuePair<string, int> equipo in equiposFutbol)
                     writer.WriteLine($"{equipo.Key};{equipo.Value}");
@@ -340,13 +340,11 @@ Gestión de equipos de fútbol
         static void GuardarJugadores()
         {
             // Comprobar si la carpeta 'ficheros' existe; si no, la creamos
-            if (!Directory.Exists(ruta))
-            {
-                Directory.CreateDirectory(ruta);
-            }
+            if (!Directory.Exists(Ruta))
+                Directory.CreateDirectory(Ruta);
 
             // Guardar los datos en el fichero de jugadores
-            using (StreamWriter writer = new StreamWriter(Path.Combine(ruta, ficheroJugadores)))
+            using (StreamWriter writer = new StreamWriter(Path.Combine(Ruta, FicheroJugadores)))
             {
                 foreach (KeyValuePair<string, string> jugador in jugdores)
                     writer.WriteLine($"{jugador.Key};{jugador.Value}");
